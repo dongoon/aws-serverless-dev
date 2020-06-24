@@ -1,0 +1,5 @@
+.envrc
+## localstack
+data/*.json
+## IDE files
+.idea/

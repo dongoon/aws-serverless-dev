@@ -1,0 +1,5 @@
+export LOCALSTACK_API_KEY=xxxxxxxxxx  # required Pro Version
+export SERVICES=s3,ses
+export PORT_WEB_UI=8080
+export TMPDIR=/private$TMPDIR         # If OSX
+export DATA_DIR=/var/localstack_data
