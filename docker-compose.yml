@@ -5,9 +5,13 @@ services:
     container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
     image: localstack/localstack
     ports:
-      - "4566:4566"
+      - "53:53"
+      - "443:443"
+      - "4510-4520:4510-4520"
+      - "4566-4620:4566-4620"
       - "${PORT_WEB_UI}:${PORT_WEB_UI}"
     environment:
+      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY- }
       - SERVICES=${SERVICES- }
       - DEBUG=${DEBUG- }
       - DATA_DIR=${DATA_DIR- }
