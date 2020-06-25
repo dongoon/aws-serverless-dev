@@ -1,0 +1,4 @@
+export PATH=/root/.local/bin:$PATH
+export LOCALSTACK_HOST=localstack
+
+alias ll='ls -al'

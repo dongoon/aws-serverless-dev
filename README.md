@@ -9,24 +9,26 @@
 1. `cd [current this dir]`
 1. Preapre .envrc file
     1. `cp ./.envrc_example ./.envrc`
-    1. Fix `LOCALSTACK_API_KEY`
+    1. Fix `LOCALSTACK_API_KEY`, `L_AWS_ACCESS_KEY`, `L_AWS_SECRET_KEY`, `SMTP_xxxx`
 1. `direnv allow` # First time || .envrc updated
-1. `make start`
-### Sandbox by ruby script
-Requirements: ruby ver => `./sandbox_ruby/.ruby-version`
-1. `cd ./sandbox_ruby`
-1. `bundle install`
+1. `make init`
+### Development console
+`make login`
 
 ## SES
 ### ruby
-`pry`
+```
+local     > make login
+devserver $ pry
+```
+↓
 ```erbruby
 require 'aws-sdk-ses'
-client = Aws::SES::Client.new(region: 'us-west-2', endpoint: 'http://localhost:4579')
+client = Aws::SES::Client.new(endpoint: 'http://localstack:4579')
 client.verify_email_identity(email_address: 'sender@example.com')
 client.send_email(
   destination: {
-    to_addresses: ['to-you.@example.com']
+    to_addresses: ['to-you@example.com']
   },
   message: {
     body: {
