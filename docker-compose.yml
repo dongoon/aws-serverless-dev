@@ -2,7 +2,7 @@ version: '3'
 
 services:
   localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_docker_main}"
     image: localstack/localstack
     ports:
       - "53:53"
@@ -11,11 +11,16 @@ services:
       - "4566-4620:4566-4620"
     environment:
       - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY- }
+      - DEFAULT_REGION=${DEFAULT_REGION- }
       - SERVICES=${SERVICES- }
+      - EXTRA_CORS_ALLOWED_HEADERS=*
+      - EXTRA_CORS_EXPOSE_HEADERS=*
+      - AUTOSTART_UTIL_CONTAINERS=1
       - DEBUG=${DEBUG- }
       - DATA_DIR=${DATA_DIR- }
       - PORT_WEB_UI=${PORT_WEB_UI- }
       - LAMBDA_EXECUTOR=docker-reuse
+      - DNS_RESOLVE_IP=${DNS_RESOLVE_IP-}
       - DOCKER_HOST=unix:///var/run/docker.sock
       - SMTP_HOST=${SMTP_HOST- }
       - SMTP_USER=${SMTP_USER- }
@@ -28,7 +33,9 @@ services:
   devserver:
     image: localstack-ruby
     ports:
-      - "25:25"
+      - "1025:1025"
       - "1080:1080"
     tty: true
-    command: bash -c "mailcatcher --smtp-port 25 --smtp-ip 0.0.0.0 --http-ip 0.0.0.0 && /bin/bash"
+    volumes:
+      - "./stacks:/var/src/stacks"
+    command: bash -c "mailcatcher --smtp-ip 0.0.0.0 --http-ip 0.0.0.0 && /bin/bash"

@@ -2,15 +2,16 @@ export LOCALSTACK_API_KEY=xxxxxxxxxx                # required Pro Version
 
 export TMPDIR=/private$TMPDIR                       # If OSX
 export DATA_DIR=/var/localstack_data
+export DNS_RESOLVE_IP=172.17.0.1      # Modify If your network has classB: 172.16.0.0/12
 
-export SERVICES=edge,s3,ses,cognito
-export START_WEB=0
+export SERVICES=edge,serverless,ses,cognito,cloudformation
+export START_WEB=1
 
 export DEFAULT_REGION=ap-northeast-1
 export L_AWS_ACCESS_KEY=AXXXXXXXXXXXXXXXXXXZ        # AWS IAM access key
 export L_AWS_SECRET_KEY=Axxxxxxxxxxxxxxxxxxxxxxxx9  # AWS IAM secret key
 
-export SMTP_HOST=smtp.example.com                   # Modify it for your SMTP server environment
-export SMTP_USER=smtp_user                          # Modify it for your SMTP server environment
-export SMTP_PASS=smtp_password                      # Modify it for your SMTP server environment
+export SMTP_HOST=host.docker.internal:1025
+export SMTP_USER=
+export SMTP_PASS=
 export SMTP_EMAIL=sender@example.com

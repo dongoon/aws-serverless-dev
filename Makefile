@@ -4,10 +4,14 @@ DOCKER_EXEC = docker-compose exec
 
 help:
 	@echo "Dev env util:"
-	@echo "  make start             Start the localstack docker containers."
-	@echo "  make stop              Stop the localstack docker containers."
-	@echo "  make restart           Restart the localstack docker containers."
-	@echo "  make status            Show containers"
+	@echo "  make init              Initialize (build & Start)"
+	@echo "  make build             Build"
+	@echo "  make down              Down"
+	@echo "  make rebuild           Rebuild (Down & Build)"
+	@echo "  make start             Start"
+	@echo "  make stop              Stop"
+	@echo "  make restart           Restart (Stop & Start)"
+	@echo "  make status            Show status"
 	@echo
 	@echo "Web UI:"
 	@echo "  make open-ui           Open browser UI."
@@ -25,6 +29,11 @@ stop:
 	@docker-compose stop
 
 restart: stop start
+
+down:
+	@docker-compose down
+
+rebuild: down build
 
 status:
 	@docker-compose ps

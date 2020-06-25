@@ -2,6 +2,7 @@
 
 ## localstack
 data/*.json
+data/dynamodb/*.db
 
 ## IDE files
 .idea/
