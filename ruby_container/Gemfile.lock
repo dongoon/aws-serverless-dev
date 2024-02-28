@@ -925,7 +925,7 @@ GEM
     pry-doc (1.1.0)
       pry (~> 0.11)
       yard (~> 0.9.11)
-    yard (0.9.25)
+    yard (0.9.35)
 
 PLATFORMS
   ruby
